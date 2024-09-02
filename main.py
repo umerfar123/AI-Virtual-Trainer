@@ -1,21 +1,39 @@
 import mediapipe as mp
 import poseEstimation as pe 
 import cv2
+import numpy as np
+
+dir,count=0,0
 poseDetector=pe.poseTrack()
 cap=cv2.VideoCapture('trainer\o1.mp4')
 
 while True:
+    
     status,frame=cap.read()
+    
+    if not status:
+        break
     frame=cv2.resize(frame,(720,360))
     frame=poseDetector.poseDetector(frame,Draw=False)
     lmList=poseDetector.posePosition(frame,Draw=False)
     if len(lmList) !=0:
-      
-        rshoulder=lmList[12][1:]
-        lshoulder=lmList[11][1:]
-        lelbow,lwrist = lmList[13][1:],lmList[15][1:]
-        frame=poseDetector.findAngle(frame,11,13,15)
-    
+
+        frame ,angle = poseDetector.findAngle(frame,11,13,15)
+
+        per=np.interp(angle, (210,310),(0,100))
+        #cv2.putText(frame,text=str(int(per)),color=(0,0,0),fontFace=cv2.FONT_HERSHEY_COMPLEX_SMALL,fontScale=2,thickness=2,org=(0,350))
+
+        #dumbel curl checking
+        if per ==100:
+            if dir == 0:
+                count+=0.5
+                dir=1
+        if per == 0:
+            if dir == 1:
+                count+=0.5
+                dir=0
+        cv2.rectangle(frame,pt1=(0,360),pt2=(100,280),color=(255,0,0),thickness=-1)
+        cv2.putText(frame,org=(40,330),fontFace=cv2.FONT_HERSHEY_COMPLEX_SMALL,fontScale=2,thickness=2,color=(255,255,0),text=str(int(count)))
     
     cv2.imshow("AI_Trainer",frame)
     

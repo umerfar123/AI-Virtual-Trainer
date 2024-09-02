@@ -60,7 +60,8 @@ class poseTrack():
             
             cv2.circle(frame,center=(x3,y3),radius=15,color=(255,0,255),thickness=1)
             cv2.circle(frame,center=(x3,y3),radius=5,color=(255,0,255),thickness=-1)
-        return frame
+            
+        return frame,angle
 def main():
     pass
     
