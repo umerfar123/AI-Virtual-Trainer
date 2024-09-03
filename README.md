@@ -15,6 +15,31 @@ The AI Virtual Trainer utilizes the capabilities of OpenCV and MediaPipe to:
 * Rep Counting: The system counts repetitions of each exercise based on the detected pose patterns and temporal information. It ensures accurate counting by considering the 
   range of motion, speed, and other relevant factors.
 
+# Usage
+
+1. Clone this repository using :
+
+   ```
+   git clone https://github.com/umerfar123/AI-Virtual-Trainer.git
+   ```
+2. Install mediapipe and opencv libraries :
+
+   ```python
+    pip install opencv-python
+   ```
+    ```python
+    pip install mediapipe
+   ```
+3. Run the main file
+   
+   ```python
+    python main.py
+    ```
+___
+> [!NOTE]
+> To Exit the Window press 'x'
+    
+
 # Demo Videos
 
 ## Demo-1 : Jumping Jacks
@@ -37,10 +62,4 @@ https://github.com/user-attachments/assets/1cfb262b-5ea1-4026-9bdd-939f4e66363d
 
 https://github.com/user-attachments/assets/e3117019-8050-41b6-a904-469c456ef02b
 
-# Usage
 
-1. Clone this repository using :
-
-   ```
-   
-   ```
