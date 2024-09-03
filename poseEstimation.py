@@ -25,7 +25,7 @@ class poseTrack():
                 self.mpDraw.draw_landmarks(frame,self.results.pose_landmarks,self.mpPose.POSE_CONNECTIONS)
              
         return frame
-    def posePosition(self,frame,Draw=True):
+    def posePosition(self,frame,Draw=False):
         
         self.lmList=[]
         if self.results.pose_landmarks:
@@ -47,19 +47,19 @@ class poseTrack():
         if angle < 0:
             angle += 360
             
-        cv2.putText(frame,text=str(int(angle)),org=(x2+10,y2+10),color=(255,0,0),fontFace=cv2.FONT_HERSHEY_COMPLEX_SMALL,fontScale=2,thickness=3)
+        #cv2.putText(frame,text=str(int(angle)),org=(x2+10,y2+10),color=(255,0,0),fontFace=cv2.FONT_HERSHEY_COMPLEX_SMALL,fontScale=1,thickness=2)
         
         if draw:
-            cv2.circle(frame,center=(x1,y1),radius=15,color=(255,0,255),thickness=1)
-            cv2.circle(frame,center=(x1,y1),radius=5,color=(255,0,255),thickness=-1)
-            cv2.line(frame,pt1=(x1,y1),pt2=(x2,y2),color=(255,255,0),thickness=2)
+            cv2.circle(frame,center=(x1,y1),radius=15,color=(0,0,255),thickness=1)
+            cv2.circle(frame,center=(x1,y1),radius=5,color=(0,0,255),thickness=-1)
+            cv2.line(frame,pt1=(x1,y1),pt2=(x2,y2),color=(255,255,255),thickness=2)
             
-            cv2.circle(frame,center=(x2,y2),radius=15,color=(255,0,255),thickness=1)
-            cv2.circle(frame,center=(x2,y2),radius=5,color=(255,0,255),thickness=-1)
-            cv2.line(frame,pt1=(x3,y3),pt2=(x2,y2),color=(255,255,0),thickness=2)
+            cv2.circle(frame,center=(x2,y2),radius=15,color=(0,0,255),thickness=1)
+            cv2.circle(frame,center=(x2,y2),radius=5,color=(0,0,255),thickness=-1)
+            cv2.line(frame,pt1=(x3,y3),pt2=(x2,y2),color=(255,255,255),thickness=2)
             
-            cv2.circle(frame,center=(x3,y3),radius=15,color=(255,0,255),thickness=1)
-            cv2.circle(frame,center=(x3,y3),radius=5,color=(255,0,255),thickness=-1)
+            cv2.circle(frame,center=(x3,y3),radius=15,color=(0,0,255),thickness=1)
+            cv2.circle(frame,center=(x3,y3),radius=5,color=(0,0,255),thickness=-1)
             
         return frame,angle
 def main():
