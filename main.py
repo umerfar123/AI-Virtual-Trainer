@@ -4,10 +4,10 @@ import cv2
 import numpy as np
 
 dir,count=0,0
-jcount, flag = 0,0
+jcount, flag ,scount= 0,0,0
 poseDetector=pe.poseTrack()
-cap=cv2.VideoCapture('trainer\o4.mp4')
-workout='jj'
+cap=cv2.VideoCapture('trainer\o7.mp4')
+workout='sp'
 while True:
     
     status,frame=cap.read()
@@ -21,7 +21,7 @@ while True:
 
         #pushup
         if workout=='ps':
-            frame ,angle = poseDetector.findAngle(frame,11,13,15)
+            frame ,angle = poseDetector.findAngle(frame,12,14,16)
             per = np.interp(angle, (194,290),(0,100))
             bar = np.interp(angle,(194,290),(250,50))
             
@@ -104,7 +104,6 @@ while True:
         
         #jumping jacks
         if workout =='jj':
-            
             #frame ,angle = poseDetector.findAngle(frame,11,13,15)
             
             xrh , yrh = lmList[29][1:]
@@ -125,7 +124,24 @@ while True:
                 flag=0
     
             cv2.putText(frame,text=str(jcount),color=(0,255,0),fontFace=cv2.FONT_HERSHEY_PLAIN,fontScale=2,thickness=2,org=(20,340))
-    
+        
+        if workout == 'sp':
+            
+            ylh,yrh = lmList[24][2], lmList[23][2]
+            yrk,ylk = lmList[25][2], lmList[26][2] 
+            
+            if ylh > ylk or yrh > yrk:
+                print('situp')
+                flag =1
+            else:
+                print('0')
+                if flag:
+                    scount += 1
+                flag=0
+                
+            cv2.putText(frame,text=str(scount),color=(0,255,0),fontFace=cv2.FONT_HERSHEY_PLAIN,fontScale=2,thickness=2,org=(20,340))
+        
+            
     cv2.imshow("AI_Trainer",frame)
     if cv2.waitKey(1) & 0xFF == ord('x'):
         break

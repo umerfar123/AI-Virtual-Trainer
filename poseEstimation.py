@@ -15,7 +15,7 @@ class poseTrack():
         self.pose= self.mpPose.Pose()
         self.mpDraw=mp.solutions.drawing_utils
         
-    def poseDetector(self,frame,Draw=True):
+    def poseDetector(self,frame,Draw=False):
         
         frameRGB=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
         self.results=self.pose.process(frameRGB)
