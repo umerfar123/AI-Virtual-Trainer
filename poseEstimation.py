@@ -47,7 +47,7 @@ class poseTrack():
         if angle < 0:
             angle += 360
             
-        #cv2.putText(frame,text=str(int(angle)),org=(x2+10,y2+10),color=(255,0,0),fontFace=cv2.FONT_HERSHEY_COMPLEX_SMALL,fontScale=1,thickness=2)
+        cv2.putText(frame,text=str(int(angle)),org=(x2+10,y2+10),color=(255,0,0),fontFace=cv2.FONT_HERSHEY_COMPLEX_SMALL,fontScale=1,thickness=2)
         
         if draw:
             cv2.circle(frame,center=(x1,y1),radius=15,color=(0,0,255),thickness=1)
